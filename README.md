@@ -1,6 +1,6 @@
 # Must See Movies Associations
 
-## There is a Getting Started video on Canvas. You should pull that up and start it now.
+## There is a Getting Started video for this project on Canvas that walks you through much of the below.
 
 In this project, we'll practice associating rows from different tables to one another.
 
@@ -9,7 +9,7 @@ Our goal will be to build something that works like [this target](http://msm-ass
 ## Setup
 
  1. You should have gotten here by clicking the assignment in Canvas.
- 1. Set up [a Cloud9 workspace as usual](https://guides.firstdraft.com/getting-started-with-cloud-9.html).
+ 1. Set up [a Cloud9 workspace as usual](https://guides.firstdraft.com/getting-started-with-cloud9.html).
  1. `bin/setup`
  1. Run Project
  1. I've already added the [starter_generators](https://guides.firstdraft.com/starter_generators.html) gem for you.
@@ -18,15 +18,15 @@ Our goal will be to build something that works like [this target](http://msm-ass
         rails generate starter:resource director name:string dob:string bio:text image_url:string
 
  1. `rails db:migrate`
- 1. Navigate to `/directors` verify that the CRUD resource boilerplate was generated properly.
- 1. Quickly add a few rows to the directors table:
+ 1. Navigate to `/directors` in your live app and verify that the CRUD resource boilerplate was generated properly. Presto!
+ 1. You could add a few directors yourself manually using the generated Golden Seven. Or, quickly add a few rows to the directors table with a script that I included:
 
     ```
     rails dev:prime:directors
     ```
 
- 1. As always, use the [Continuous Integration workflow](https://guides.firstdraft.com/continuous-integration.html) to save, submit, and check progress. (You'll have to generate all four `starter:resource`s before any of your tests start passing.)
- 1. If at any point `rspec` fails with the message "Migrations are pending. To resolve this issue, run: bin/rake db:migrate RAILS_ENV=test" then run
+ 1. `rails grade:all` won't work until after you've generated all four resources as described below (directors, movies, characters, actors). Until then, just work towards making your app match the target (in functionality, not style).
+ 1. If at any point `rails grade:all` fails with the message "Migrations are pending. To resolve this issue, run: bin/rake db:migrate RAILS_ENV=test" then run
 
         rails db:migrate RAILS_ENV=test
 
@@ -106,12 +106,12 @@ For each question, see if you can craft a single Ruby expression that returns th
 
  1. You can use the included `rails generate starter:style default` generator to quickly write a much better application layout file, with `<link>`s to Bootstrap, Font Awesome, a navbar, notices, and more.
 
-    When you run this command, it will warn you that it's about to overwrite the existing application layout — say `y`. Refresh the page, and voila! A beautiful new look. However, you may want to replace the link to get to the Git page, perhaps in the navbar (you can replace some of the dummy placeholder links like "Sitemap" or "Edit profile"):
+    When you run this command, it will warn you that it's about to overwrite the existing application layout — say `y`. Refresh the page, and voila! A beautiful new look.
+
+    However, you may want to bring back the link to get to the Git page, which was in the old `layouts/application.html.erb` that got overwritten. If so, add the following anywhere in that file:
 
     ```html
-    <a href="/rails/git" target="_blank">
-      Git
-    </a>
+    <%= dev_tools %>
     ```
 
  1. Currently, on the movies index page and a movie's show page, the code that the generator wrote for you is showing users raw director ID numbers. This is bad. Replace the id number with the name of the director.

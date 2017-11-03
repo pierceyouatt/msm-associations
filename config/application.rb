@@ -13,7 +13,7 @@ module MustSeeMoviesAssociations
     # -- all .rb files in that directory are automatically loaded.
     config.generators do |g|
       g.test_framework nil
-      g.factory_girl false
+      g.factory_bot false
       g.scaffold_stylesheet false
     end
   end
