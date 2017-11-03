@@ -11,13 +11,14 @@ Our goal will be to build something that works like [this target](http://msm-ass
  1. You should have gotten here by clicking the assignment in Canvas.
  1. Set up [a Cloud9 workspace as usual](https://guides.firstdraft.com/getting-started-with-cloud9.html).
  1. `bin/setup`
- 1. Run Project
- 1. I've already added the [starter_generators](https://guides.firstdraft.com/starter_generators.html) gem for you.
- 1. Generate the Director resource with the following command at a terminal prompt:
+ 1. `bin/server` (or Run Project) and wait for the server to start up.
+ 1. Navigate to the live app in Chrome and verify that it's a brand new, blank app.
+ 1. I've already added the [starter_generators](https://guides.firstdraft.com/starter_generators.html) gem for you, but you might want to go read that Guide.
+ 1. Let's use the gem to generate the Director resource with the following command at a new terminal prompt:
 
         rails generate starter:resource director name:string dob:string bio:text image_url:string
 
- 1. `rails db:migrate`
+ 1. `rails db:migrate` to actually execute the instructions you just generated to create a new table.
  1. Navigate to `/directors` in your live app and verify that the CRUD resource boilerplate was generated properly. Presto!
  1. You could add a few directors yourself manually using the generated Golden Seven. Or, quickly add a few rows to the directors table with a script that I included:
 
@@ -68,6 +69,18 @@ Execute the newly generated instructions to add the movies table:
 Quickly add a few rows to the movies table:
 
     rails dev:prime:movies
+
+Now might also be a good time to set the `MoviesController` `index` action as our homepage, which we can do in `config/routes.rb` with:
+
+```ruby
+get("/", { :controller => "movies", :action => "index" })
+```
+
+or, the following convenient shorthand for setting a homepage:
+
+```ruby
+root("movies#index")
+```
 
 ### Validations
 
