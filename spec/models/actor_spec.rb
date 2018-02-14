@@ -1,23 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe 'Actor', type: :model do
-  context 'validations' do
-    it "will fail if the name is blank", points: 2 do
-      actor = build(:actor, name: "Leonardo DiCaprio", dob: "November 11, 1974")
-      expect(actor).to be_valid
+describe 'Actor' do
+  it "validations will fail if the name is blank", points: 2 do
+    actor = build(:actor, name: "Leonardo DiCaprio", dob: "November 11, 1974")
+    expect(actor).to be_valid
 
-      actor.name = ''
-      expect(actor).to be_invalid
-    end
+    actor.name = ''
+    expect(actor).to be_invalid
+  end
 
-    it "will fail if the name and dob combination isn't unique", points: 2 do
-      actor1 = create(:actor, name: "Leonardo DiCaprio", dob: "November 11, 1974")
-      actor2 = build(:actor, name: "Leo DiCaprio", dob: "November 11, 1974")
-      expect(actor2).to be_valid
+  it "validations will fail if the name and dob combination isn't unique", points: 2 do
+    actor1 = create(:actor, name: "Leonardo DiCaprio", dob: "November 11, 1974")
+    actor2 = build(:actor, name: "Leo DiCaprio", dob: "November 11, 1974")
+    expect(actor2).to be_valid
 
-      actor2.name = actor1.name
-      expect(actor2).to be_invalid
-    end
+    actor2.name = actor1.name
+    expect(actor2).to be_invalid
   end
 
   it 'has many characters', points: 2 do

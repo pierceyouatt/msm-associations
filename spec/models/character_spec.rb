@@ -1,30 +1,28 @@
 require 'rails_helper'
 
-RSpec.describe 'Character', type: :model do
-  context 'validations' do
-    it "will fail if the movie_id is nil", points: 2 do
-      scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
-      departed = create(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
-      leo = create(:actor, name: "Leonardo DiCaprio", dob: "November 11, 1974")
-      character = build(:character, name: 'Billy Costigan', movie_id: departed.id, actor_id: leo.id)
+describe 'Character' do
+  it "validations will fail if the movie_id is nil", points: 2 do
+    scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
+    departed = create(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
+    leo = create(:actor, name: "Leonardo DiCaprio", dob: "November 11, 1974")
+    character = build(:character, name: 'Billy Costigan', movie_id: departed.id, actor_id: leo.id)
 
-      expect(character).to be_valid
+    expect(character).to be_valid
 
-      character.movie_id = nil
-      expect(character).to be_invalid
-    end
+    character.movie_id = nil
+    expect(character).to be_invalid
+  end
 
-    it "will fail if the actor_id is nil", points: 2 do
-      scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
-      departed = create(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
-      leo = create(:actor, name: "Leonardo DiCaprio", dob: "November 11, 1974")
-      character = build(:character, name: 'Billy Costigan', movie_id: departed.id, actor_id: leo.id)
+  it "validations will fail if the actor_id is nil", points: 2 do
+    scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
+    departed = create(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
+    leo = create(:actor, name: "Leonardo DiCaprio", dob: "November 11, 1974")
+    character = build(:character, name: 'Billy Costigan', movie_id: departed.id, actor_id: leo.id)
 
-      expect(character).to be_valid
+    expect(character).to be_valid
 
-      character.actor_id = nil
-      expect(character).to be_invalid
-    end
+    character.actor_id = nil
+    expect(character).to be_invalid
   end
 
   it "belongs to a movie", points: 2 do

@@ -1,57 +1,55 @@
 require 'rails_helper'
 
-RSpec.describe 'Movie', type: :model do
-  context 'validations' do
-    it 'will fail if the director_id is nil', points: 2 do
-      scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
-      movie = build(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
+describe 'Movie' do
+  it 'validations will fail if the director_id is nil', points: 2 do
+    scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
+    movie = build(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
 
-      expect(movie).to be_valid
+    expect(movie).to be_valid
 
-      movie.director_id = nil
-      expect(movie).to be_invalid
-    end
+    movie.director_id = nil
+    expect(movie).to be_invalid
+  end
 
-    it 'will fail if the title is blank', points: 2 do
-      scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
-      movie = build(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
+  it 'validations will fail if the title is blank', points: 2 do
+    scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
+    movie = build(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
 
-      expect(movie).to be_valid
+    expect(movie).to be_valid
 
-      movie.title = ''
-      expect(movie).to be_invalid
-    end
+    movie.title = ''
+    expect(movie).to be_invalid
+  end
 
-    it "will fail if the title and year combination isn't unique", points: 2 do
-      scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
-      movie1 = create(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
-      movie2 = build(:movie, title: "Departed", year: 2006, duration: 151, director_id: scorsese.id)
+  it "validations will fail if the title and year combination isn't unique", points: 2 do
+    scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
+    movie1 = create(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
+    movie2 = build(:movie, title: "Departed", year: 2006, duration: 151, director_id: scorsese.id)
 
-      expect(movie2).to be_valid
+    expect(movie2).to be_valid
 
-      movie2.title = movie1.title
-      expect(movie2).to be_invalid
-    end
+    movie2.title = movie1.title
+    expect(movie2).to be_invalid
+  end
 
-    it "will fail if the year isn't between 1870 and 2050", points: 2 do
-      scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
-      movie = build(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
+  it "validations will fail if the year isn't between 1870 and 2050", points: 2 do
+    scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
+    movie = build(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
 
-      expect(movie).to be_valid
+    expect(movie).to be_valid
 
-      movie.year = 2051
-      expect(movie).to be_invalid
-    end
+    movie.year = 2051
+    expect(movie).to be_invalid
+  end
 
-    it "will fail if the duration isn't between 0 and 2764800", points: 2 do
-      scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
-      movie = build(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
+  it "validations will fail if the duration isn't between 0 and 2764800", points: 2 do
+    scorsese = create(:director, name: "Martin Scorsese", dob: "November 17, 1942")
+    movie = build(:movie, title: "The Departed", year: 2006, duration: 151, director_id: scorsese.id)
 
-      expect(movie).to be_valid
+    expect(movie).to be_valid
 
-      movie.duration = -1
-      expect(movie).to be_invalid
-    end
+    movie.duration = -1
+    expect(movie).to be_invalid
   end
 
   it "belongs to a director", points: 2 do

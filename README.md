@@ -20,7 +20,7 @@ Our goal will be to build something that works like [this target](http://msm-ass
  1. `bin/setup`
  1. `bin/server`
  1. Navigate to the app preview in Chrome and verify that it's a brand new, blank app.
- 1. I've already added the [draft_generators](https://guides.firstdraft.com/draft_generators.html) gem to the `Gemfile` for you, but you might want to go read that Guide to get an overview of what it does for us.
+ 1. I've already added the [draft_generators](https://guides.firstdraft.com/draftgenerators.html) gem to the `Gemfile` for you, but you might want to go read that Guide to get an overview of what it does for us.
  1. Let's use the gem to generate the Director resource with the following command at a new terminal prompt:
 
     ```
