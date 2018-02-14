@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/firstdraft/grade_runner.git
-  revision: fbddabac089f98821b7d07d9ac957c836a05264b
+  revision: b653fe5ad02a6bb78b9bbfba40ab8b077533099c
   specs:
     grade_runner (0.0.1)
 
