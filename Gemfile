@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
+gem "firstdraft_generators", :github => "firstdraft/firstdraft_generators"
 
 gem "rails", "~> 5.0.2"
 gem "sqlite3"
@@ -29,7 +29,6 @@ end
 group :development do
   gem "annotate"
   gem "awesome_print"
-  gem "firstdraft_generators", github: "firstdraft/firstdraft_generators"
   gem "listen", "~> 3.0.5"
   gem "meta_request"
   gem "spring-watcher-listen", "~> 2.0.0"
