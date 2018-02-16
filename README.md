@@ -225,9 +225,9 @@ So, we should first go through the steps we went through above when we were sett
 1. Currently, on the characters index page and a character's show page, the code that the generator wrote for you is showing users raw movie ID numbers. This is bad. Replace the id number with the title of the movie.
 1. On the new and edit character pages, let's give our users a dropdown box to select a movie, rather than having to type in a valid ID number. Let's use the `select_tag` view helper method to make this slightly easier than writing the raw HTML `<select>` and `<option>` tags by hand:
 
-```erb
-<%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @character.try(:movie_id)), :class => "form-control") %>
-```
+    ```erb
+    <%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @character.try(:movie_id)), :class => "form-control") %>
+    ```
 
 1. Let's also add a link to the new movie form in case the movie doesn't exist yet.
 1. On a movie's show page, display a count of how many characters belong to that movie.
