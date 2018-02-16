@@ -140,7 +140,7 @@ For each question, see if you can craft a single Ruby expression that returns th
  1. On the new and edit movie pages, let's give our users a dropdown box to select a director, rather than having to type in a valid ID number. Let's use the `select_tag` view helper method to make this slightly easier than writing the raw HTML `<select>` and `<option>` tags by hand:
 
     ```html
-    <%= select_tag("director_id", options_from_collection_for_select(Director.all, :id, :name, @movie.director_id), :class => "form-control") %>
+    <%= select_tag("director_id", options_from_collection_for_select(Director.all, :id, :name, @movie.try(:director_id)), :class => "form-control") %>
     ```
 
  1. Let's also add a link to the new director form in case the director doesn't exist yet.
@@ -226,7 +226,7 @@ So, we should first go through the steps we went through above when we were sett
 1. On the new and edit character pages, let's give our users a dropdown box to select a movie, rather than having to type in a valid ID number. Let's use the `select_tag` view helper method to make this slightly easier than writing the raw HTML `<select>` and `<option>` tags by hand:
 
 ```erb
-<%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @character.movie_id), :class => "form-control") %>
+<%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @character.try(:movie_id)), :class => "form-control") %>
 ```
 
 1. Let's also add a link to the new movie form in case the movie doesn't exist yet.
