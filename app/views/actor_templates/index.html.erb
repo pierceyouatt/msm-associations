@@ -1,0 +1,92 @@
+<h1>
+  All actors
+</h1>
+
+<a href="/actors/new">
+  Add a new actor
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+
+    <th>
+      Name
+    </th>
+
+
+    <th>
+      Dob
+    </th>
+
+
+    <th>
+      Bio
+    </th>
+
+
+    <th>
+      Image url
+    </th>
+
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @actors.each do |actor| %>
+  <tr>
+    <td>
+      <%= actor.id %>
+    </td>
+
+
+    <td>
+      <%= actor.name %>
+    </td>
+
+
+    <td>
+      <%= actor.dob %>
+    </td>
+
+
+    <td>
+      <%= actor.bio %>
+    </td>
+
+
+    <td>
+      <%= actor.image_url %>
+    </td>
+
+
+    <td>
+      <%= time_ago_in_words(actor.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(actor.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/actors/<%= actor.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

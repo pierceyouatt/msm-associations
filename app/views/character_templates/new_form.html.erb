@@ -1,0 +1,70 @@
+
+<!-- Validation failure messages -->
+<% if @character.present? %>
+  <% if @character.errors.any? %>
+    <% @character.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<h1>
+  Add a new character
+</h1>
+
+<hr>
+
+<form action="/create_character" method="post">
+
+  <!-- Label and input for movie_id -->
+
+  <div class="form-group">
+    <label for="movie_id">
+      Movie
+    </label>
+
+<!--    <input type="text" id="movie_id" name="movie_id" class="form-control" value="<%= @character.try(:movie_id) %>"> -->
+    <%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @character.try(:movie_id)), :class => "form-control") %>
+  </div>
+<a href="/movies/new">or add a new movie</a>
+
+
+  <!-- Label and input for actor_id -->
+
+  <div class="form-group">
+    <label for="actor_id">
+      Actor
+    </label>
+
+    <%= select_tag("actor_id", options_from_collection_for_select(Actor.all, :id, :name, @character.try(:actor_id)), :class => "form-control") %>
+  </div>
+<a href="/actors/new">or add a new actor</a>
+
+
+  <!-- Label and input for name_string -->
+
+  <div class="form-group">
+    <label for="name_string">
+      Name string
+    </label>
+
+
+    <input type="text" id="name_string" name="name_string" class="form-control" value="<%= @character.try(:name_string) %>">
+
+  </div>
+
+
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create character
+  </button>
+</form>
+
+<hr>
+
+<a href="/characters">
+  Go back
+</a>

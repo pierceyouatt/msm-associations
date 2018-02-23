@@ -1,0 +1,85 @@
+
+<!-- Validation failure messages -->
+<% if @actor.errors.any? %>
+  <% @actor.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+
+<h1>
+  Edit actor #<%= @actor.id %>
+</h1>
+
+<hr>
+
+<form action="/update_actor/<%= @actor.id %>" method="post">
+
+  <!-- Label and input for name -->
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @actor.name %>">
+
+  </div>
+
+
+
+  <!-- Label and input for dob -->
+
+  <div class="form-group">
+    <label for="dob">
+      Dob
+    </label>
+
+
+    <input type="text" id="dob" name="dob" class="form-control" value="<%= @actor.dob %>">
+
+  </div>
+
+
+
+  <!-- Label and input for bio -->
+
+  <div class="form-group">
+    <label for="bio">
+      Bio
+    </label>
+
+
+    <textarea id="bio" name="bio" class="form-control" rows="3"><%= @actor.bio %></textarea>
+
+  </div>
+
+
+
+  <!-- Label and input for image_url -->
+
+  <div class="form-group">
+    <label for="image_url">
+      Image url
+    </label>
+
+
+    <input type="text" id="image_url" name="image_url" class="form-control" value="<%= @actor.image_url %>">
+
+  </div>
+
+
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update actor
+  </button>
+</form>
+
+<hr>
+
+<a href="/actors">
+  Go back
+</a>

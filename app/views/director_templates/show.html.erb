@@ -1,0 +1,107 @@
+<h1>
+  Director #<%= @director.id %> details
+</h1>
+
+<a href="/directors/<%= @director.id %>/edit">
+  Edit director
+</a>
+
+<hr>
+
+<dl>
+
+  <dt>
+    Name
+  </dt>
+  <dd>
+    <%= @director.name %>
+  </dd>
+
+
+  <dt>
+    Dob
+  </dt>
+  <dd>
+    <%= @director.dob %>
+  </dd>
+
+
+  <dt>
+    Bio
+  </dt>
+  <dd>
+    <%= @director.bio %>
+  </dd>
+
+
+  <dt>
+    Image url
+  </dt>
+  <dd>
+    <%= @director.image_url %>
+  </dd>
+
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@director.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@director.updated_at) %> ago
+  </dd>
+</dl>
+
+<h4>Filmography</h4>
+<% Movie.where(:director_id => @director.id). each do |movie| %>
+<p><%= movie.title %> - <%= movie.year %></p>
+<% end %>
+
+<!--MOVIE FORM-->
+<form action="/create_movie" method="post">
+
+  <!-- Label and input for title -->
+
+  <div class="form-group">
+    <label for="title">
+      Title
+    </label>
+    <input type="text" id="title" name="title" class="form-control">
+  </div>
+
+  <!-- Label and input for year -->
+
+  <div class="form-group">
+    <label for="year">
+      Year
+    </label>
+    <input type="text" id="year" name="year" class="form-control">
+
+  </div>
+
+  <!-- Input for director_id -->
+
+    <input type="hidden" name="director_id" value="<%= @director.id %>">
+
+<a href="/directors/new">or add a new director</a>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create movie
+  </button>
+</form>
+
+<a href="/delete_director/<%= @director.id %>" class="btn btn-default">
+  Delete director
+</a>
+
+
+<hr>
+
+<a href="/directors">
+  Go back
+</a>

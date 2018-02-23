@@ -1,0 +1,119 @@
+<h1>
+  Movie #<%= @movie.id %> details
+</h1>
+
+<a href="/movies/<%= @movie.id %>/edit">
+  Edit movie
+</a>
+
+<hr>
+
+<dl>
+
+  <dt>
+    Title
+  </dt>
+  <dd>
+    <%= @movie.title %>
+  </dd>
+
+
+  <dt>
+    Year
+  </dt>
+  <dd>
+    <%= @movie.year %>
+  </dd>
+
+
+  <dt>
+    Duration
+  </dt>
+  <dd>
+    <%= @movie.duration %>
+  </dd>
+
+
+  <dt>
+    Description
+  </dt>
+  <dd>
+    <%= @movie.description %>
+  </dd>
+
+
+  <dt>
+    Image url
+  </dt>
+  <dd>
+    <%= @movie.image_url %>
+  </dd>
+
+
+  <dt>
+    Director
+  </dt>
+  <dd>
+    <%= @movie.director_id %>
+  </dd>
+
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@movie.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@movie.updated_at) %> ago
+  </dd>
+</dl>
+
+
+<a href="/delete_movie/<%= @movie.id %>" class="btn btn-default">
+  Delete movie
+</a>
+
+
+<hr>
+<p>Characters in movie: <%= Character.where(:movie_id => @movie.id).count %></p>
+<p>Actors in movie: <%= Actor.where(:movie_id => @movie.id).count %></p>
+<% Character.where(:movie_id => @movie.id). each do |character| %>
+<p><a href="/actors/<%= character.actor_id %>"><%= Actor.find_by(:id => character.actor_id).name_string %></a> (<%= character.name_string %>)</p>
+<% end %>
+<!-- Character Add Form -->
+<form action="/create_character" method="post">
+
+  <!-- Label and input for movie_id -->
+
+    <input type="hidden" name="movie_id" value="<%= @movie.id %>">
+
+  <!-- Label and input for actor_id -->
+
+  <div class="form-group">
+    <label for="actor_id">
+      Actor
+    </label>
+    <input type="text" id="actor_id" name="actor_id" class="form-control" value="<%= @character.try(:actor_id) %>">
+  </div>
+
+  <!-- Label and input for name_string -->
+  <div class="form-group">
+    <label for="name_string">
+      Name string
+    </label>
+    <input type="text" id="name_string" name="name_string" class="form-control" value="<%= @character.try(:name_string) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create character
+  </button>
+</form>
+
+<a href="/movies">
+  Go back
+</a>

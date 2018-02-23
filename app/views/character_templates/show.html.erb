@@ -1,0 +1,62 @@
+<h1>
+  Character #<%= @character.id %> details
+</h1>
+
+<a href="/characters/<%= @character.id %>/edit">
+  Edit character
+</a>
+
+<hr>
+
+<dl>
+
+  <dt>
+    Movie
+  </dt>
+  <dd>
+    <%= Movie.find_by(:id => @character.movie_id).title %>
+  </dd>
+
+
+  <dt>
+    Actor
+  </dt>
+  <dd>
+    <%= Actor.find_by(:id => @character.actor_id).name %>
+  </dd>
+
+
+  <dt>
+    Name string
+  </dt>
+  <dd>
+    <%= @character.name_string %>
+  </dd>
+
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@character.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@character.updated_at) %> ago
+  </dd>
+</dl>
+
+
+<a href="/delete_character/<%= @character.id %>" class="btn btn-default">
+  Delete character
+</a>
+
+
+<hr>
+
+<a href="/characters">
+  Go back
+</a>

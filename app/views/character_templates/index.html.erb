@@ -1,0 +1,82 @@
+<h1>
+  All characters
+</h1>
+
+<a href="/characters/new">
+  Add a new character
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+
+    <th>
+      Movie
+    </th>
+
+
+    <th>
+      Actor
+    </th>
+
+
+    <th>
+      Name string
+    </th>
+
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @characters.each do |character| %>
+  <tr>
+    <td>
+      <%= character.id %>
+    </td>
+
+
+    <td>
+      <%= Movie.find_by(:id => character.movie_id).title %>
+    </td>
+
+
+    <td>
+      <%= Actor.find_by(:id => character.actor_id).name %>
+    </td>
+
+
+    <td>
+      <%= character.name_string %>
+    </td>
+
+
+    <td>
+      <%= time_ago_in_words(character.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(character.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/characters/<%= character.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

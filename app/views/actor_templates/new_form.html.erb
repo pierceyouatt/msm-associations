@@ -1,0 +1,87 @@
+
+<!-- Validation failure messages -->
+<% if @actor.present? %>
+  <% if @actor.errors.any? %>
+    <% @actor.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<h1>
+  Add a new actor
+</h1>
+
+<hr>
+
+<form action="/create_actor" method="post">
+
+  <!-- Label and input for name -->
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @actor.try(:name) %>">
+
+  </div>
+
+
+
+  <!-- Label and input for dob -->
+
+  <div class="form-group">
+    <label for="dob">
+      Dob
+    </label>
+
+
+    <input type="text" id="dob" name="dob" class="form-control" value="<%= @actor.try(:dob) %>">
+
+  </div>
+
+
+
+  <!-- Label and input for bio -->
+
+  <div class="form-group">
+    <label for="bio">
+      Bio
+    </label>
+
+
+    <textarea id="bio" name="bio" class="form-control" rows="3"><%= @actor.try(:bio) %></textarea>
+
+  </div>
+
+
+
+  <!-- Label and input for image_url -->
+
+  <div class="form-group">
+    <label for="image_url">
+      Image url
+    </label>
+
+
+    <input type="text" id="image_url" name="image_url" class="form-control" value="<%= @actor.try(:image_url) %>">
+
+  </div>
+
+
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create actor
+  </button>
+</form>
+
+<hr>
+
+<a href="/actors">
+  Go back
+</a>

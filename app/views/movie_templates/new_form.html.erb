@@ -1,0 +1,113 @@
+
+<!-- Validation failure messages -->
+<% if @movie.present? %>
+  <% if @movie.errors.any? %>
+    <% @movie.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<h1>
+  Add a new movie
+</h1>
+
+<hr>
+
+<form action="/create_movie" method="post">
+
+  <!-- Label and input for title -->
+
+  <div class="form-group">
+    <label for="title">
+      Title
+    </label>
+
+
+    <input type="text" id="title" name="title" class="form-control" value="<%= @movie.try(:title) %>">
+
+  </div>
+
+
+
+  <!-- Label and input for year -->
+
+  <div class="form-group">
+    <label for="year">
+      Year
+    </label>
+
+
+    <input type="text" id="year" name="year" class="form-control" value="<%= @movie.try(:year) %>">
+
+  </div>
+
+
+
+  <!-- Label and input for duration -->
+
+  <div class="form-group">
+    <label for="duration">
+      Duration
+    </label>
+
+
+    <input type="text" id="duration" name="duration" class="form-control" value="<%= @movie.try(:duration) %>">
+
+  </div>
+
+
+
+  <!-- Label and input for description -->
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+
+    <textarea id="description" name="description" class="form-control" rows="3"><%= @movie.try(:description) %></textarea>
+
+  </div>
+
+
+
+  <!-- Label and input for image_url -->
+
+  <div class="form-group">
+    <label for="image_url">
+      Image url
+    </label>
+
+
+    <input type="text" id="image_url" name="image_url" class="form-control" value="<%= @movie.try(:image_url) %>">
+
+  </div>
+
+
+
+  <!-- Label and input for director_id -->
+
+  <div class="form-group">
+    <label for="director_id">
+      Director
+    </label>
+
+    <%= select_tag("director_id", options_from_collection_for_select(Director.all, :id, :name, @movie.try(:director_id)), :class => "form-control") %>
+  </div>
+<a href="/directors/new">or add a new director</a>
+
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create movie
+  </button>
+</form>
+
+<hr>
+
+<a href="/movies">
+  Go back
+</a>
