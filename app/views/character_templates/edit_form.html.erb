@@ -38,22 +38,20 @@
       Actor
     </label>
 
-
-    <input type="text" id="actor_id" name="actor_id" class="form-control" value="<%= @character.actor_id %>">
-
+    <%= select_tag("actor_id", options_from_collection_for_select(Actor.all, :id, :name, @character.try(:actor_id)), :class => "form-control") %>
   </div>
 
 
 
-  <!-- Label and input for name_string -->
+  <!-- Label and input for name -->
 
   <div class="form-group">
-    <label for="name_string">
+    <label for="name">
       Name string
     </label>
 
 
-    <input type="text" id="name_string" name="name_string" class="form-control" value="<%= @character.name_string %>">
+    <input type="text" id="name" name="name" class="form-control" value="<%= @character.name %>">
 
   </div>
 

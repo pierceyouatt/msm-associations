@@ -18,14 +18,9 @@ class CharactersController < ApplicationController
   def create_row
     @character = Character.new
 
-
     @character.movie_id = params.fetch("movie_id")
-
     @character.actor_id = params.fetch("actor_id")
-
-    @character.name_string = params.fetch("name_string")
-
-
+    @character.name = params.fetch("name")
 
     if @character.valid?
       @character.save
@@ -34,7 +29,6 @@ class CharactersController < ApplicationController
     else
       render("character_templates/new_form.html.erb")
     end
-
   end
 
   def edit_form
@@ -46,14 +40,9 @@ class CharactersController < ApplicationController
   def update_row
     @character = Character.find(params.fetch("id_to_modify"))
 
-
     @character.movie_id = params.fetch("movie_id")
-
     @character.actor_id = params.fetch("actor_id")
-
-    @character.name_string = params.fetch("name_string")
-
-
+    @character.name = params.fetch("name")
 
     if @character.valid?
       @character.save
@@ -62,7 +51,6 @@ class CharactersController < ApplicationController
     else
       render("character_templates/edit_form.html.erb")
     end
-
   end
 
   def destroy_row
@@ -70,8 +58,6 @@ class CharactersController < ApplicationController
 
     @character.destroy
 
-
     redirect_to("/characters", :notice => "Character deleted successfully.")
-
   end
 end

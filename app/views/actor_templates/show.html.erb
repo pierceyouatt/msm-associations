@@ -56,10 +56,44 @@
     <%= time_ago_in_words(@actor.updated_at) %> ago
   </dd>
 </dl>
-
-<% Character.where(:actor_id => @actor.id). each do |character| %>
-<p><a href="/movies/<%= character.movie_id %>"><%= Movie.find_by(:id => character.movie_id).name_string %></a> (<%= character.name_string %>)</p>
+<p>Count of Characters: <%= Character.where(actor_id: @actor.id).count %></p>
+<% Character.where(actor_id: @actor.id). each do |character| %>
+<p><a href="/movies/<%= character.movie_id %>"><%= Movie.find_by(:id => character.movie_id).title %></a> (<%= character.name %>)</p>
 <% end %>
+
+<form action="/create_character" method="post">
+
+  <!-- Label and input for movie_id -->
+
+  <div class="form-group">
+    <label for="movie_id">
+      Movie
+    </label>
+
+<!--    <input type="text" id="movie_id" name="movie_id" class="form-control" value="<%= @character.try(:movie_id) %>"> -->
+    <%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @character.try(:movie_id)), :class => "form-control") %>
+  </div>
+<a href="/movies/new">or add a new movie</a>
+
+
+  <!-- Label and input for actor_id -->
+
+    <input type="hidden" name="actor_id" value="<%= @actor.id %>">
+
+  <!-- Label and input for name -->
+  <div class="form-group">
+    <label for="name">
+      Name string
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @character.try(:name) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create character
+  </button>
+</form>
+
 
 <a href="/delete_actor/<%= @actor.id %>" class="btn btn-default">
   Delete actor
